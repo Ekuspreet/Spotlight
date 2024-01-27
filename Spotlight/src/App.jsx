@@ -1,8 +1,17 @@
 import React from 'react'
 import Landing from './Pages/Landing'
+import Login from './Pages/Login'
+import Signup from './Pages/Signup'
+import { Route,Routes} from "react-router-dom"
+import Profile from './Pages/Profile'
 const App = () => {
   return (<>
-      <Landing/>
+  <Routes>
+        <Route path="/" element={ <Landing/> } />
+        <Route path="login" element={ <Login/> } />
+        <Route path="signup" element={ <Signup/> } />
+        <Route path="profile" element={ <Profile/> } />
+      </Routes>
     </>
   )
 }

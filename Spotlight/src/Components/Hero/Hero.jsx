@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from "react-router-dom"
 
 const Hero = () => {
   return (
@@ -9,7 +10,7 @@ const Hero = () => {
 		</h1>
 		<p className="px-5 mt-4 mb-8 text-md">Dazzle the world with your brilliance! 🌟 Join Spotlight and share your projects, because your creativity deserves a standing ovation. <span className="text-primary">#SpotlightProjects #IgniteInnovation</span></p>
 		<div className="flex flex-wrap justify-center">
-        <button class="btn btn-primary">Get Started Now !</button>
+        <Link to='/signup' > <button class="btn btn-primary">Get Started Now !</button></Link>
 			</div>
 	</div>
 </section>

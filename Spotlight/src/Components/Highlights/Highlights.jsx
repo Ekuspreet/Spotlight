@@ -1,63 +1,39 @@
-import React from 'react'
+import React from 'react';
 
 const Highlights = () => {
-    return (
-        <>
-            <div className="flex flex-col md:flex-row gap-6 justify-center align-middle mx-10">
+  const highlightsData = [
+    {
+      title: 'Put Your Work in the Limelight',
+      description: 'Easily showcase your projects to a global audience. From creative endeavors to technical innovations, Spotlight provides a dedicated space for your work to shine.',
+    },
+    {
+      title: 'Connect and Collaborate',
+      description: 'Join a vibrant community of creators and enthusiasts. Engage with like-minded individuals, share insights, and collaborate on exciting projects. Spotlight is more than a platform; it\'s a creative hub.',
+    },
+    {
+      title: 'Craft Your Creative Identity',
+      description: 'Create a personalized profile that reflects your unique style and skills. Tailor your space on Spotlight to showcase your portfolio, bio, and accomplishments. Let the world see the story behind your projects.',
+    },
+    {
+      title: 'Beyond Words - Visualize Your Ideas',
+      description: 'Enhance your project presentations with rich multimedia integration. Upload images, videos, and other media to provide a comprehensive view of your creations. ',
+    },
+  ];
 
-                <div className="card md:card-image-cover w-72 ">
-                    <img className="w-auto" src="https://img.freepik.com/free-vector/company-teamwork-idea-generation-discussion-meeting-conference-corporate-workers-characters-brainstorming-business-strategy-planning_335657-785.jpg" alt="" />
-                    <div className="card-body">
-                        <div className="card-header">
-                            Put Your Work in the Limelight
-                        </div>
-                        <div className="text-content2">
-                            Easily showcase your projects to a global audience. From creative endeavors to technical innovations, Spotlight provides a dedicated space for your work to shine
-                        </div>
-                    </div>
-                </div>
+  return (
+    <div className=' flex flex-wrap m-5 gap-5 justify-center'>
+      {highlightsData.map((highlight) => (
+        <div class="card w-80 rounded hover:-translate-y-2">
+        
+        <div class="card-body">
+            <h2 class="card-header">{highlight.title}</h2>
+            <p class="text-content2">{highlight.description}</p>
+ 
+        </div>
+    </div>
+      ))}
+    </div>
+  );
+};
 
-                <div className="card card-image-cover w-72 ">
-                    <img className="w-auto" src="https://img.freepik.com/free-vector/company-teamwork-idea-generation-discussion-meeting-conference-corporate-workers-characters-brainstorming-business-strategy-planning_335657-785.jpg" alt="" />
-                    <div className="card-body">
-                        <div className="card-header">
-                        Connect and Collaborate
-                        </div>
-                        <div className="text-content2">
-                            Easily showcase your projects to a global audience. From creative endeavors to technical innovations, Spotlight provides a dedicated space for your work to shine
-                        </div>
-                    </div>
-                </div>
-
-                <div className="card card-image-cover w-72 ">
-                    <img className="w-auto" src="https://img.freepik.com/free-vector/company-teamwork-idea-generation-discussion-meeting-conference-corporate-workers-characters-brainstorming-business-strategy-planning_335657-785.jpg" alt="" />
-                    <div className="card-body">
-                        <div className="card-header">
-                            Put Your Work in the Limelight
-                        </div>
-                        <div className="text-content2">
-                            Easily showcase your projects to a global audience. From creative endeavors to technical innovations, Spotlight provides a dedicated space for your work to shine
-                        </div>
-                    </div>
-                </div>
-
-                <div className="card card-image-cover w-72 ">
-                    <img className="w-auto" src="https://img.freepik.com/free-vector/company-teamwork-idea-generation-discussion-meeting-conference-corporate-workers-characters-brainstorming-business-strategy-planning_335657-785.jpg" alt="" />
-                    <div className="card-body">
-                        <div className="card-header">
-                            Put Your Work in the Limelight
-                        </div>
-                        <div className="text-content2">
-                            Easily showcase your projects to a global audience. From creative endeavors to technical innovations, Spotlight provides a dedicated space for your work to shine
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-
-        </>
-    )
-}
-
-export default Highlights
+export default Highlights;
