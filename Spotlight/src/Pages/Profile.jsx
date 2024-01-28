@@ -2,6 +2,7 @@ import React from 'react'
 import NavbarSpecific from '../Components/Navbar/NavbarSpecific'
 
 const Profile = () => {
+  
   return (
     <>
     

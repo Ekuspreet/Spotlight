@@ -3,9 +3,12 @@ import {Link, redirect} from 'react-router-dom'
 import NavbarSpecific from '../Components/Navbar/NavbarSpecific'
 import { useState } from 'react'
 import Axios from 'axios'
+import { useNavigate } from "react-router-dom";
+
 import Message from '../Components/Alerts/Message'
 const Signup = () => {
 
+    const navigate = useNavigate();
     const [signUpData,setSignUpData] = useState({
         email : "",
         password : "",
@@ -53,7 +56,7 @@ const Signup = () => {
             return;
         }
 
-        if(!(signUpData.password.length >8)){
+        if(!(signUpData.password.length >=8)){
             setMessage({
                 type : "error",
                 display : "block",
@@ -67,9 +70,19 @@ const Signup = () => {
         
         Axios.post('http://localhost:8000/signup', signUpData)
             .then(response => {
-                console.log('Form data sent successfully', response.data);
-                redirect
-            })
+                    setMessage({
+                       
+                        display : "block",
+                        message : response.data.message,
+                        type : response.data.type              })
+                    
+                        setTimeout(() => {
+                            navigate('/login');
+
+                        }, 2000);
+                        
+                    })
+            
             .catch(error => {
                 console.error('Error sending form data', error);
                 // Handle error as needed
@@ -92,7 +105,7 @@ const Signup = () => {
 		<p className="text-sm">Sign Up to create an Account</p>
 	</div>
 
-        <form className='form-group' action="#" onSubmit={handleSubmit} >
+        <form className='form-group' action="#"  onSubmit={handleSubmit} >
         <div className="form-field">
 			<label className="form-label">Email address </label>
 

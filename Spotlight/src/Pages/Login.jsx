@@ -3,18 +3,25 @@ import Navbar from '../Components/Navbar/Navbar'
 import NavbarSpecific from '../Components/Navbar/NavbarSpecific'
 import {Link} from 'react-router-dom'
 import { useState } from 'react'
-import { Axios } from 'axios'
+import  Axios  from 'axios'
+import { useNavigate } from "react-router-dom";
+import Message from '../Components/Alerts/Message'
 const Login = () => {
 
     const [loginData,setLoginData] = useState({
         email : "",
         password : "",
     });
-    
+    const [message,setMessage] = useState({
+        display : "hidden",
+        message : "",
+        type : "error"
+    }
+    )
 
     function handleLoginForm(event){
         
-
+        
         setLoginData(
             {
                 ...loginData,
@@ -23,13 +30,31 @@ const Login = () => {
         );
     }
 
-
-     function handleSubmit(){
+    function closeButton(){
         
+        setMessage(
+            { ...message,
+                display : "hidden"
+                }
+        );
+}
+     function handleSubmit(e){
+        e.preventDefault();
             
-            const response = Axios.post('http://localhost:8000/login', loginData);
+     Axios.post('http://localhost:8000/login', loginData)
+     .then(response =>{
+        setMessage({
+                       
+            display : "block",
+            message : response.data.message,
+            type : response.data.type              })
+        
+     }) .catch(error => {
+        console.error('Error sending form data', error);
+        // Handle error as needed
+    });
       
-            console.log('Form data sent successfully', response.data);
+            
             // Handle success as needed
         };
     
@@ -47,7 +72,7 @@ const Login = () => {
 		<p className="text-sm">Log In to access your Account</p>
 	</div>
 
-        <form className='form-group' action="#" onSubmit={handleSubmit} >
+        <form className='form-group' action='#' onSubmit={handleSubmit} >
         <div className="form-field">
 			<label className="form-label">Email address</label>
 
@@ -72,6 +97,13 @@ const Login = () => {
 			<Link to='/signup' >	<a className="link link-underline-hover link-primary text-sm">Don't have an account yet? Sign up.</a></Link>
 			</div>
 		</div>
+
+        <Message 
+        visibility = {message.display}
+        btnclose = {closeButton}
+        type={message.type}
+        alertmessage={message.message}
+        />
 
     </div>
 
