@@ -3,13 +3,13 @@ const Search = () => {
         const message = "Search Project"
         return (
          <>
-         <div className=" flex items-center mt-10 md:w-2/4 gap-3 px-2 md:px-28 ">
+         <div className=" flex  gap-3  min-w-1/2   ">
               <input
                 className=" input-block input input-ghost-primary  "
                 placeholder={message}
               />
               <div className="btn btn-outline-primary ">
-              <span class="material-symbols-outlined">
+              <span className="material-symbols-outlined">
 search
 </span></div>
 

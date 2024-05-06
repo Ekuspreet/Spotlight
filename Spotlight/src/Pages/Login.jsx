@@ -3,11 +3,12 @@ import Navbar from '../Components/Navbar/Navbar'
 import NavbarSpecific from '../Components/Navbar/NavbarSpecific'
 import {Link} from 'react-router-dom'
 import { useState } from 'react'
-import  Axios  from 'axios'
+import  axios  from 'axios'
 import { useNavigate } from "react-router-dom";
 import Message from '../Components/Alerts/Message'
+import Cookie from 'js-cookie'
 const Login = () => {
-
+    const navigate = useNavigate()
     const [loginData,setLoginData] = useState({
         email : "",
         password : "",
@@ -38,25 +39,29 @@ const Login = () => {
                 }
         );
 }
-     function handleSubmit(e){
+     async function handleSubmit(e){
         e.preventDefault();
-            
-     Axios.post('http://localhost:8000/login', loginData)
-     .then(response =>{
+      try{      
+     const response = await axios.post('/api/login', loginData)
+     
         setMessage({
-                       
             display : "block",
             message : response.data.message,
             type : response.data.type              })
         
-     }) .catch(error => {
+        console.log(response.data);
+        if(response.data.type == "success"){
+        setTimeout(()=>{
+            
+            Cookie.set('token', response.data.token,{expires : 7})
+            navigate('/profile')
+
+        },500)}
+        
+    }catch(error){
         console.error('Error sending form data', error);
         // Handle error as needed
-    });
-      
-            
-            // Handle success as needed
-        };
+    }};
     
 
     return (
@@ -65,6 +70,7 @@ const Login = () => {
     pagename= "Welcome Back!"
     backmessage = "<--"
     />
+    <div className="divider"></div>
     
     <div className="m-6 mx-auto max-w-lg min-w-fit  flex  flex-col justify-center gap-6">
 	<div className="flex flex-col justify-center items-center">
@@ -94,7 +100,8 @@ const Login = () => {
 
         <div className="form-field">
 			<div className="form-control justify-center">
-			<Link to='/signup' >	<a className="link link-underline-hover link-primary text-sm">Don't have an account yet? Sign up.</a></Link>
+			
+            <Link to='/signup' className="link link-underline-hover link-primary text-sm" >Don't have an account yet? Sign up.</Link>	
 			</div>
 		</div>
 

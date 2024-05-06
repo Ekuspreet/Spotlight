@@ -68,19 +68,19 @@ const Signup = () => {
         }
 
         
-        Axios.post('http://localhost:8000/signup', signUpData)
+        Axios.post('/api/signup', signUpData)
             .then(response => {
                     setMessage({
                        
                         display : "block",
                         message : response.data.message,
                         type : response.data.type              })
-                    
+                    if(response.data.type == "success"){
                         setTimeout(() => {
                             navigate('/login');
 
                         }, 2000);
-                        
+                        }
                     })
             
             .catch(error => {
@@ -141,7 +141,7 @@ const Signup = () => {
         </form>
         <div className="form-field">
 			<div className="form-control justify-center">
-				<Link to="/login" ><a className="link link-underline-hover link-primary text-sm">Already Have An Account? Log In.</a></Link>
+            <Link to="/login" className="link link-underline-hover link-primary text-sm" >Already Have An Account? Log In.</Link>
 			</div>
 		</div>
         

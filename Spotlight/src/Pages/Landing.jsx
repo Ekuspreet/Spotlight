@@ -7,10 +7,14 @@ import Search from '../Components/Search/Search'
 const Landing = () => {
   return (
     < >
-    <div className="flex flex-col items-center">
+    <div className="">
     <Navbar/>
+    <div className="divider divider-horizontal"></div>
     <Search/>
+    <div className="divider"></div>
     <Hero/>
+    <div className="divider"></div>
+
     <Highlights/>
     </div>
     </>

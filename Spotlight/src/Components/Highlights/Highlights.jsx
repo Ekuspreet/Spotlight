@@ -22,12 +22,12 @@ const Highlights = () => {
 
   return (
     <div className=' flex flex-wrap m-5 gap-5 justify-center'>
-      {highlightsData.map((highlight) => (
-        <div class="card w-80 rounded hover:-translate-y-2">
+      {highlightsData.map((highlight,index) => (
+        <div key={index} className="card w-80 rounded hover:-translate-y-2">
         
-        <div class="card-body">
-            <h2 class="card-header">{highlight.title}</h2>
-            <p class="text-content2">{highlight.description}</p>
+        <div className="card-body">
+            <h2 className="card-header">{highlight.title}</h2>
+            <p className="text-content2">{highlight.description}</p>
  
         </div>
     </div>
