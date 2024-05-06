@@ -6,6 +6,7 @@ import NavbarProfile from '../Components/Navbar/NavbarProfile';
 import axios from 'axios';
 import { UserContext } from '../Contexts/UserProvider';
 import Projects from '../Components/Projects/Projects';
+import UploadModal from '../Components/Modals/UploadModal';
 
 const Profile = () => {
 
@@ -33,7 +34,7 @@ const Profile = () => {
 
   useEffect(() => {
     if (user) {
-      console.log(user.name);
+      console.log(user);
 
     }
   }, [user]);
@@ -53,8 +54,9 @@ const Profile = () => {
       <div className="divider"></div>
       <h1 className=' card-header justify-center gap-2 text-2xl'>Welcome, <span className='text-primary'> {user.name || (<div className="spinner-simple"></div>)} </span> </h1>
       <div className="divider"></div>
-      
-      <button className='btn btn-primary'>Add Project</button>
+      <label class="btn btn-primary" for="modal-3">Add Project</label>
+
+      <UploadModal/>
 
       {/* <Projects list = {user.projids}/> */}
       <Projects list={projids} />
